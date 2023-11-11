@@ -1,0 +1,186 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ion-icon {
+  font-size: 1.7rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  padding: 1vh 5vw;
+  align-items: center;
+}
+
+.card-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 1vw;
+}
+
+.card-title-req {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.card-title-req h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.card-title-req p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.card-text {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+.songlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  padding: 2vh 3vw;
+}
+
+.songplayer {
+  position: fixed;
+  bottom: 2vh;
+  left: 1vw;
+  width: 98%;
+  border-radius: 10px;
+  /* border: 1px solid #7e7e7e; */
+  background: #000;
+  height: 9vh;
+}
+
+.playerpage {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  padding: 3vh 4vw;
+  justify-content: space-between;
+  height: 100vh;
+  padding-bottom: 8vh;
+}
+
+.playerpage-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playerpage-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+
+.playerpage-image img {
+  width: 300px;
+  height: 300px;
+  /* border-radius: 50%; */
+}
+
+#play-circle {
+  font-size: 5rem;
+}
+
+#play-circle-2 {
+  font-size: 3rem;
+}
+
+.playerpage-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  padding: 0 4vw;
+}
+
+.playerpage-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3vw;
+}
+
+.playerpage-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vh;
+  align-items: center;
+  margin-bottom: 5vh;
+}
+
+.playerpage-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.playerpage-info p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.playerpage-progress {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-bar {
+  width: 60vw;
+  height: 1vh;
+  background: #fff;
+  border-radius: 10px;
+}
+.songlist-header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding-left: 4vw;
+  height: 10vh;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .songlist-header {
+    background-color: #000;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .songlist-header {
+    background-color: #fff;
+  }
+}
+
+.songlist-subheader {
+  margin-top: 10vh;
+}

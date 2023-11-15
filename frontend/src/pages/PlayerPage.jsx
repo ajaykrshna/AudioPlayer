@@ -19,6 +19,7 @@ const PlayerPage = ({
 }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [progressWidth, setProgressWidth] = useState(0);
+  const [shuffle, setShuffle] = useState(false);
 
   useEffect(() => {
     if (audio) {
@@ -103,11 +104,17 @@ const PlayerPage = ({
     );
     audio && audio.pause();
     audio && (audio.currentTime = 0);
-    if (index === songs.length - 1) {
-      setNowPlaying(songs[0]);
-      setAudio(null);
+    if (!shuffle) {
+      if (index === songs.length - 1) {
+        setNowPlaying(songs[0]);
+        setAudio(null);
+      } else {
+        setNowPlaying(songs[index + 1]);
+        setAudio(null);
+      }
     } else {
-      setNowPlaying(songs[index + 1]);
+      const randomIndex = Math.floor(Math.random() * songs.length);
+      setNowPlaying(songs[randomIndex]);
       setAudio(null);
     }
   };
@@ -160,6 +167,13 @@ const PlayerPage = ({
           ></ion-icon>
           <div onClick={handleSkipForward}>
             <ion-icon name="play-skip-forward" id="play-circle-2"></ion-icon>
+          </div>
+          <div onClick={() => setShuffle((shuffle) => !shuffle)}>
+            <ion-icon
+              name="shuffle"
+              id="shuffle"
+              style={{ color: shuffle ? "red" : "white" }}
+            ></ion-icon>
           </div>
         </div>
       </div>

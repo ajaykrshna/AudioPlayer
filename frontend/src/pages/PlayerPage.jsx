@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 
 const formatTime = (time) => {
@@ -20,6 +21,13 @@ const PlayerPage = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [progressWidth, setProgressWidth] = useState(0);
   const [shuffle, setShuffle] = useState(false);
+  // const [randomNumber, setRandomNumber] = useState(0);
+  let randomNumber = 0;
+
+  const getRandomNumber = async () => {
+    const res = await axios.get("http://127.0.0.1:5000/randomnumber");
+    randomNumber = parseInt(res.data);
+  };
 
   useEffect(() => {
     if (audio) {
@@ -82,18 +90,26 @@ const PlayerPage = ({
     setIsPlaying(!isPlaying);
   };
 
-  const handleSkipBack = () => {
+  const handleSkipBack = async () => {
     const index = songs.findIndex(
       (song) =>
         song.title === nowPlaying.title && song.artist === nowPlaying.artist
     );
     audio && audio.pause();
     audio && (audio.currentTime = 0);
-    if (index === 0) {
-      setNowPlaying(songs[songs.length - 1]);
+    if (!shuffle) {
+      if (index === songs.length - 1) {
+        setNowPlaying(songs[0]);
+        setAudio(null);
+      } else {
+        setNowPlaying(songs[index + 1]);
+        setAudio(null);
+      }
     } else {
-      setNowPlaying(songs[index - 1]);
-      setAudio(null);
+      getRandomNumber().then(() => {
+        setNowPlaying(songs[randomNumber - 1]);
+        setAudio(null);
+      });
     }
   };
 
@@ -113,9 +129,10 @@ const PlayerPage = ({
         setAudio(null);
       }
     } else {
-      const randomIndex = Math.floor(Math.random() * songs.length);
-      setNowPlaying(songs[randomIndex]);
-      setAudio(null);
+      getRandomNumber().then(() => {
+        setNowPlaying(songs[randomNumber - 1]);
+        setAudio(null);
+      });
     }
   };
 

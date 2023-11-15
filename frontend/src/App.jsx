@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/songlist")
+      .get("http://127.0.0.1:5000/songlist")
       .then((res) => {
         setSongs(res.data);
       })
@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     nowPlaying.title &&
     axios
-      .get(`http://localhost:8080/song/${nowPlaying.title}`, {
+      .get(`http://127.0.0.1:5000/song/${nowPlaying.title}`, {
         responseType: "blob",
       })
       .then((res) => {
